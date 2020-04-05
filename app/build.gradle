@@ -1,7 +1,15 @@
 apply plugin: 'com.android.application'
 
-//properties文件名
+//引入插件，webp_plugin 为 properties的文件名
 apply plugin: 'webp_plugin'
+
+webpPlugin {
+    largeImageThreshold = 30
+    whiteList = [
+            "bg_2.png",
+            "back_icon.png"
+    ]
+}
 
 android {
     compileSdkVersion 29

@@ -30,7 +30,7 @@ public class WebpUtil {
 
             if (webpFile.length() < imgFile.length()) {
                 LogUtil.log(imgFile.getName() + " 转换成webp成功，删除原文件，保留webp文件");
-             //   LogUtil.log(TAG, imgFile.getPath(), imgFile.length() + "", webpFile.length() + "");
+                // TODO: 2020/4/5 转换成功后删除
 //                if (imgFile.exists()) {
 //                    imgFile.delete();
 //                }
