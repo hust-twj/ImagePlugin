@@ -1,0 +1,3 @@
+rootProject.name='ImagePlugin'
+include ':app'
+include ':webp_converter_plugin'
