@@ -29,6 +29,7 @@ public class ImageUtil {
     }
 
     public static boolean isAlphaPNG(File filePath) {
+        // TODO: 2020/4/10 透明通道的图片判定
         if (filePath.exists()) {
 //            try {
 //                ImageIO img = ImageIO.read(filePath);
@@ -43,9 +44,10 @@ public class ImageUtil {
 
     /**
      * 是否为大体积图片
-     * @param imgFile 图片文件
+     *
+     * @param imgFile     图片文件
      * @param imageSizeKb 图片文件大小（kB）
-     * @return
+     * @return 是否为大体积图片
      */
     public static boolean isBigSizeImage(File imgFile, float imageSizeKb) {
         if (isImage(imgFile)) {

@@ -1,14 +1,19 @@
 package com.twj.plugin
 
 /**
- * 图片插件的配置类
+ * webp插件参数的配置
  */
 class PluginExtension {
 
     /**
-     * 插件开关
+     * 是否检测大体积图片
      */
-    boolean switchOn
+    boolean isCheckSize
+
+    /**
+     * 是否转换大体积图片为Webp格式
+     */
+    boolean canConvertWebp
 
     /**
      * 大尺寸图片阈值，超过该值才会检测
@@ -22,7 +27,8 @@ class PluginExtension {
     Iterable<String> whiteList
 
     PluginExtension() {
-        switchOn = true
+        isCheckSize = true
+        canConvertWebp = true
         largeImageThreshold = 20
         whiteList = []
     }

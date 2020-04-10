@@ -19,7 +19,7 @@ public class CompressUtil {
         if (ImageUtil.isJPG(imgFile)) {
             String tempFilePath = imgFile.getPath().substring(0, imgFile.getPath().lastIndexOf(".")) + "_temp" +
                     imgFile.getPath().substring(imgFile.getPath().lastIndexOf("."));
-            Tools.cmd("guetzli", imgFile.getPath() + " " + tempFilePath);
+            CmdTools.cmd("guetzli", imgFile.getPath() + " " + tempFilePath);
             File tempFile = new File(tempFilePath);
             newSize = tempFile.length();
             LogUtil.log("newSize = " + newSize);
@@ -36,7 +36,7 @@ public class CompressUtil {
             }
 
         } else {
-            Tools.cmd("pngquant", "--skip-if-larger --speed 1 --nofs --strip --force --output "
+            CmdTools.cmd("pngquant", "--skip-if-larger --speed 1 --nofs --strip --force --output "
                     + imgFile.getPath() + " -- " + imgFile.getPath());
             newSize = new File(imgFile.getPath()).length();
         }

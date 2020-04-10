@@ -13,13 +13,13 @@ class WebpConverterPlugin implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
-
         //创建配置项
         project.extensions.create(EXT_CONFIG_NAME, PluginExtension)
         project.afterEvaluate {
             //读取配置文件
             PluginExtension extension = project.extensions.findByName(EXT_CONFIG_NAME)
-            if (!extension.switchOn) {
+            //不开启检测的话，直接返回
+            if (!extension.isCheckSize) {
                 return
             }
 
@@ -33,16 +33,22 @@ class WebpConverterPlugin implements Plugin<Project> {
 
                         Iterable<String> whiteList = extension.whiteList
                         int largeImageThreshold = extension.largeImageThreshold
+                        boolean canConvertWebp = extension.canConvertWebp
+
                         if (!whiteList.contains(file.getName()) && ImageUtil.isImage(file)
                                 && ImageUtil.isBigSizeImage(file, largeImageThreshold)) {
-                            System.out.println("模块 $sub.name 中找到可优化图片：$file.name 其大小为：${file.length()}")
-                            WebpUtil.formatWebp(file)
+                            int size = Math.round(file.length() / 1024)
+                            System.out.println("模块 $sub.name 中找到可优化大图片：$file.name " +
+                                    "其体积为为：$size  Kb")
+                            //开启转换Webp开关
+                            if (canConvertWebp) {
+                                WebpUtil.formatWebp(file)
+                            }
                         }
 
                     }
             }
         }
-
 
     }
 

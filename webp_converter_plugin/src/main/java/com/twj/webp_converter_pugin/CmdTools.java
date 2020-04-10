@@ -4,18 +4,19 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 /**
- * Description ：
+ * Description ：Cmd工具类
  * Created by Wenjing.Tang on 2020/4/4.
  */
-public class Tools {
-    public static final String TAG = Tools.class.getSimpleName();
+public class CmdTools {
+
+    public static final String TAG = CmdTools.class.getSimpleName();
 
     public static void cmd(String cmd, String params) {
         String cmdStr;
         if (isCmdExist(cmd)) {
             cmdStr = cmd + " " + params;
         } else {
-            System.out.println(TAG + "isMac(): " + isMac() + "   getToolsDirPath():" + FileUtil.getToolsDirPath() );
+            System.out.println(TAG + "isMac(): " + isMac() + "   getToolsDirPath():" + FileUtil.getToolsDirPath());
             if (isMac()) {
                 cmdStr = FileUtil.getToolsDirPath() + "mac/" + cmd + " " + params;
             } else if (isLinux()) {
@@ -84,7 +85,7 @@ public class Tools {
     }
 
     private static String executeCmd(String cmd) {
-        Process process ;
+        Process process;
         try {
             process = Runtime.getRuntime().exec(cmd);
             process.waitFor();
