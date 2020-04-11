@@ -26,6 +26,12 @@ class WebpConverterPlugin implements Plugin<Project> {
             def subProject = project.getRootProject().getSubprojects();
             subProject.eachWithIndex {
                 Project sub, int index ->
+
+                    //只在配置文件中的
+                    Iterable<String> scopeList = extension.scopeList
+                    if (!scopeList.empty  && !scopeList.contains(sub.name)) {
+                        return
+                    }
                     println "--- Project-- ': $index -- 模块名：$sub.name'"
                     //遍历所有子 Project 的 src/main/res 文件目录
                     FileTree fileTree = sub.fileTree(dir: 'src/main/res')

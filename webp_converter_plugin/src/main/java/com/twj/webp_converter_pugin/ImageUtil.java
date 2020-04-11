@@ -52,7 +52,7 @@ public class ImageUtil {
     public static boolean isBigSizeImage(File imgFile, float imageSizeKb) {
         if (isImage(imgFile)) {
             if (imgFile.length() >= imageSizeKb * 1024) {
-                LogUtil.log(SIZE_TAG, imgFile.getPath(), true + "");
+               // LogUtil.log(SIZE_TAG, imgFile.getPath(), true + "");
                 return true;
             }
         }

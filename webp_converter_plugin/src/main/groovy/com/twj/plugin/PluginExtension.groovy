@@ -22,7 +22,13 @@ class PluginExtension {
     int largeImageThreshold
 
     /**
-     * 优化图片白名单
+     * 图片扫描的子模块范围
+     * 默认扫描全部模块的图片，配置后仅在配置范围内才会扫描
+     */
+    Iterable<String> scopeList
+
+    /**
+     * 优化图片白名单（名单中的图片不转换）
      */
     Iterable<String> whiteList
 
@@ -30,6 +36,7 @@ class PluginExtension {
         isCheckSize = true
         canConvertWebp = true
         largeImageThreshold = 20
+        scopeList = []
         whiteList = []
     }
 

@@ -9,6 +9,10 @@ webpPlugin {
             "bg_2.png",
             "back_icon.png"
     ]
+    scopeList = [
+            "app",
+            "webp_converter_plugin"
+    ]
 }
 
 android {

@@ -31,7 +31,7 @@ public class CmdTools {
             LogUtil.log("McImage Not support this system");
             return;
         }
-        System.out.println(TAG + "#cmd()---  " + cmdStr);
+       // System.out.println(TAG + "#cmd()---  " + cmdStr);
 
         outputMessage(cmdStr);
     }
