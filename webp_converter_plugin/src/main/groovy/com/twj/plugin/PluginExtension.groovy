@@ -32,9 +32,15 @@ class PluginExtension {
      */
     Iterable<String> whiteList
 
+    /**
+     * 是否检测图片唯一性（防止图片名不同，但图片内容一样）
+     */
+    boolean checkUniqueImage
+
     PluginExtension() {
         isCheckSize = true
         canConvertWebp = true
+        checkUniqueImage = true
         largeImageThreshold = 20
         scopeList = []
         whiteList = []

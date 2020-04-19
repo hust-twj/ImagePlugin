@@ -2,6 +2,8 @@ package com.twj.plugin
 
 import com.twj.webp_converter_pugin.ImageUtil
 import com.twj.webp_converter_pugin.WebpUtil
+import com.twj.webp_converter_pugin.MD5Util
+
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.file.FileTree
@@ -23,16 +25,17 @@ class WebpConverterPlugin implements Plugin<Project> {
                 return
             }
 
-            def subProject = project.getRootProject().getSubprojects();
+            def subProject = project.getRootProject().getSubprojects()
+            def imagesMap = new HashMap<String, String>()
             subProject.eachWithIndex {
                 Project sub, int index ->
 
                     //只在配置文件中的
                     Iterable<String> scopeList = extension.scopeList
-                    if (!scopeList.empty  && !scopeList.contains(sub.name)) {
+                    if (!scopeList.empty && !scopeList.contains(sub.name)) {
                         return
                     }
-                    println "--- Project-- ': $index -- 模块名：$sub.name'"
+                    // println "--- Project-- ': $index -- 模块名：$sub.name'"
                     //遍历所有子 Project 的 src/main/res 文件目录
                     FileTree fileTree = sub.fileTree(dir: 'src/main/res')
                     fileTree.each { File file ->
@@ -52,10 +55,28 @@ class WebpConverterPlugin implements Plugin<Project> {
                             }
                         }
 
+                        boolean checkUniqueImage = extension.checkUniqueImage
+                        if (checkUniqueImage && ImageUtil.isImage(file)) {
+                            checkUniqueImages(imagesMap, file)
+                        }
                     }
             }
         }
 
+    }
+
+    /**
+     * 检测图片唯一性
+     * @param imageMap 图片集合
+     * @param imageFile 图片文件
+     */
+    private static void checkUniqueImages(HashMap<String, String> imageMap, File imageFile) {
+        String fileMd5String = MD5Util.getFileMD5(imageFile)
+        if (imageMap.containsKey(fileMd5String)) {
+            System.out.println("重复图片: ${imageFile.getName()} --- ${imageMap.get(fileMd5String)}")
+        } else {
+            imageMap.put(fileMd5String, imageFile.getName())
+        }
     }
 
 }
