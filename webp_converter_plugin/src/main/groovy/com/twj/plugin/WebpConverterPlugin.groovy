@@ -26,19 +26,25 @@ class WebpConverterPlugin implements Plugin<Project> {
             }
 
             def subProject = project.getRootProject().getSubprojects()
-            def imagesMap = new HashMap<String, String>()
+            def allImagesMap = new HashMap<String, String>()
+
             subProject.eachWithIndex {
                 Project sub, int index ->
-
                     //只在配置文件中的
-                    Iterable<String> scopeList = extension.scopeList
+                    Iterable<String> scopeList = extension.scopeModuleList
                     if (!scopeList.empty && !scopeList.contains(sub.name)) {
                         return
                     }
-                    // println "--- Project-- ': $index -- 模块名：$sub.name'"
+                    println "--- Project-- ': $index -- 模块名：$sub.name'"
                     //遍历所有子 Project 的 src/main/res 文件目录
                     FileTree fileTree = sub.fileTree(dir: 'src/main/res')
                     fileTree.each { File file ->
+
+                        //重复图片检测
+                        boolean checkUniqueImage = extension.checkUniqueImage
+                        if (checkUniqueImage && ImageUtil.isImage(file)) {
+                            checkUniqueImages(allImagesMap, file)
+                        }
 
                         Iterable<String> whiteList = extension.whiteList
                         int largeImageThreshold = extension.largeImageThreshold
@@ -55,10 +61,6 @@ class WebpConverterPlugin implements Plugin<Project> {
                             }
                         }
 
-                        boolean checkUniqueImage = extension.checkUniqueImage
-                        if (checkUniqueImage && ImageUtil.isImage(file)) {
-                            checkUniqueImages(imagesMap, file)
-                        }
                     }
             }
         }
@@ -73,7 +75,7 @@ class WebpConverterPlugin implements Plugin<Project> {
     private static void checkUniqueImages(HashMap<String, String> imageMap, File imageFile) {
         String fileMd5String = MD5Util.getFileMD5(imageFile)
         if (imageMap.containsKey(fileMd5String)) {
-            System.out.println("重复图片: ${imageFile.getName()} --- ${imageMap.get(fileMd5String)}")
+            System.out.println("重复图片: ${imageFile.getName()} --- ${imageMap.get(fileMd5String)} ---- ${fileMd5String}")
         } else {
             imageMap.put(fileMd5String, imageFile.getName())
         }
