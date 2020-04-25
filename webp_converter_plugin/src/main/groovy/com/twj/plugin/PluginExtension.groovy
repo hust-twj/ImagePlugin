@@ -37,6 +37,11 @@ class PluginExtension {
      */
     boolean checkUniqueImage
 
+    /**
+     * 输出文件名
+     */
+    String outputFileName
+
     PluginExtension() {
         isCheckSize = true
         canConvertWebp = true

@@ -24,11 +24,12 @@ public class WebpUtil {
             CmdTools.cmd("cwebp", imgFile.getPath() + " -o " + webpFile.getPath() + " -m 6 -quiet");
 
             if (webpFile.length() < imgFile.length()) {
-                System.out.println("图片：" + imgFile.getName() + " 转换 Webp 成功，删除原文件，保留webp文件" +
+                String outputText = "图片：" + imgFile.getName() + " 转换 Webp 成功，删除原文件，保留webp文件" +
                         "\n转换前图片大小：" + Math.round(imgFile.length() / 1024f) + " kB" +
                         "\n转换后图片大小：" + Math.round(webpFile.length() / 1024f) + " kB" +
-                        "\n   优化的体积：" + Math.round((imgFile.length() - webpFile.length()) / 1024f) + " kB");
+                        "\n    优化的体积：" + Math.round((imgFile.length() - webpFile.length()) / 1024f) + " kB\n";
 
+                FileUtil.writeOrPrintContent(outputText);
                 // 转换成功后，删除并添加webp到git
 //                if (imgFile.exists()) {
 //                    imgFile.delete();
@@ -38,7 +39,8 @@ public class WebpUtil {
                 //如果转换后的webp比原文件还大，舍弃
                 if (webpFile.exists()) {
                     webpFile.delete();
-                    LogUtil.log(imgFile.getName() + " 转换 webp 后尺寸更大，舍弃转换后的文件");
+                    String outputText = imgFile.getName() + " 转换 webp 后尺寸更大，舍弃转换后的文件\n";
+                    FileUtil.writeOrPrintContent(outputText);
                 }
             }
         }
