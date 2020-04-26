@@ -15,7 +15,7 @@ version='1.0.0'
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url:uri('../web_converter_plugin_repo'))
+            repository(url:uri('../webp_plugin_repo'))
         }
     }
 }
