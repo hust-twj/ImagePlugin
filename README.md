@@ -48,7 +48,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.husttwj.plugin:webp_plugin:1.0.1'
+        classpath 'com.husttwj.plugin:webp_plugin:1.0.3'
     }
 }
 
