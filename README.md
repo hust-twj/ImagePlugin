@@ -17,7 +17,7 @@
 
 ### 2  准备
 
-首先，该插件将`png`或`jpg`图片转为`webp`图片是利用`cwebp`工具。`cwebp`命令和使用可以查阅官方文档：https://developers.google.com/speed/webp/docs/cwebp 。如果没有`cwebp`环境，则需要增加`cwebp`的环境配置。具体配置方式如下：
+首先，该插件将`png`或`jpg`图片转为`webp`图片是利用`cwebp`工具。`cwebp`命令和使用可以查阅[ 官方文档 ](https://developers.google.com/speed/webp/docs/cwebp) 。如果没有`cwebp`环境，则需要增加`cwebp`的环境配置。具体配置方式如下：
 
 #### 2.1 Mac 系统
 
@@ -25,8 +25,7 @@
 
 #### 2.2 Windows 系统
 
-首先下载`cwebp.exe`，链接如下（需科学上网）：
-https://storage.googleapis.com/downloads.webmproject.org/releases/webp/index.html，将最新版本对应的`zip`文件下载在本地，并解压，然后将其中的`bin`目录添加到系统的环境变量。
+首先：[点这个链接（需科学上网）](https://storage.googleapis.com/downloads.webmproject.org/releases/webp/index.html) 下载`cwebp.exe`，，将最新版本对应的`zip`文件下载在本地，并解压，然后将其中的`bin`目录添加到系统的环境变量。
 
 上述环境变量配置完毕后，在命令行工具中输入`cwebp`，如果可以找到 `cwebp ` 命令，就说明安装成功。
 
