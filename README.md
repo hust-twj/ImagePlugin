@@ -63,7 +63,7 @@ webpPlugin {
 
     //是否检测：插件全局开关。false 时，不会开启扫描。
     //如果不启用该插件，该参数可设为 false，以节省编译时间
-    isCheckEnable = true
+    isCheckSize = true
 
     //找到大体积图片后是否转换为 webp。false 时，仅仅输出日志信息，不会执行转换 webp 的操作
     canConvertWebp = true
@@ -78,7 +78,7 @@ webpPlugin {
     ]
 
     //指定扫描范围：只有在范围内的模块，才会进行扫描
-    scopeModuleList = [
+    scopeList = [
             "app",
             "module_a",
             "module_b"
