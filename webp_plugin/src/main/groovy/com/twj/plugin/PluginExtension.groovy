@@ -23,7 +23,7 @@ class PluginExtension {
 
     /**
      * 图片扫描的子模块范围
-     * 默认扫描全部模块的图片，配置后仅在配置范围内才会扫描
+     * 不配置默认扫描全部模块的图片，配置后仅在配置范围内才会扫描
      */
     Iterable<String> scopeList
 
@@ -46,7 +46,7 @@ class PluginExtension {
         isCheckSize = true
         canConvertWebp = true
         checkUniqueImage = true
-        largeImageThreshold = 20
+        largeImageThreshold = 20 * 1024
         scopeList = []
         whiteList = []
     }

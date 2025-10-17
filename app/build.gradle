@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 //引入插件，webp_plugin 为 properties的文件名
-apply plugin: 'webp_plugin'
+//apply plugin: 'webp_plugin'
 
 //webpPlugin {
 //    largeImageThreshold = 30
